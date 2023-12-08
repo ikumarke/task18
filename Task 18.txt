@@ -1,0 +1,121 @@
+1..........................................................................................................
+
+
+package guvigu;
+
+import org.junit.AfterClass;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+
+public class Guvipro {
+	WebDriver driver;
+	@BeforeClass
+	public void Browsersetup() {
+		// TODO Auto-generated method stub
+		WebDriverManager.chromedriver().setup();
+		driver=new ChromeDriver();
+		driver.get("https://www.facebook.com/");
+		driver.manage().deleteAllCookies();
+		driver.manage().window().maximize();
+
+	}
+	@Test
+	public void creating_newaccount() throws InterruptedException {
+		Thread.sleep(5000);
+		WebElement findElement = driver.findElement(By.xpath("//a[@class='_42ft _4jy0 _6lti _4jy6 _4jy2 selected _51sy']"));
+		findElement.click();
+		Thread.sleep(5000);
+		WebElement findElement6 = driver.findElement(By.xpath("//input[@placeholder='First name']"));
+		findElement6.sendKeys("Test");
+		WebElement findElement7 = driver.findElement(By.name("lastname"));
+		findElement7.sendKeys("User");
+		WebElement findElement8 = driver.findElement(By.id("u_2_g_Qp"));
+		findElement8.sendKeys("Ajith1234@gmail.com");
+		WebElement findElement9 = driver.findElement(By.id("password_step_input"));
+		findElement9.sendKeys("@Ajith123");
+		WebElement findElement2 = driver.findElement(By.id("day"));
+		Select sc = new Select(findElement2);
+		sc.selectByIndex(15);
+		WebElement findElement3 = driver.findElement(By.id("month"));
+		Select sc1 = new Select(findElement3);
+		sc1.selectByValue("12");
+		WebElement findElement4 = driver.findElement(By.id("month"));
+		Select sc2 = new Select(findElement4);
+		sc2.selectByVisibleText("1997");
+		WebElement findElement5 = driver.findElement(By.id("u_2_s_gh"));
+		findElement5.click();
+		Thread.sleep(5000);
+	}
+		
+		
+	@AfterClass
+	public void browser_close() {
+		// TODO Auto-generated method stub
+driver.quit();
+	}
+
+	
+
+}
+
+2.Drag and Drop...................................................................................
+
+package guvigu;
+
+import java.awt.Desktop.Action;
+
+import org.junit.AfterClass;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+
+public class Guvipro {
+	WebDriver driver;
+	@BeforeClass
+	public void Browsersetup() {
+		// TODO Auto-generated method stub
+		WebDriverManager.chromedriver().setup();
+		driver=new ChromeDriver();
+		driver.get("https://jqueryui.com/droppable/");
+		driver.manage().deleteAllCookies();
+		driver.manage().window().maximize();
+
+	}
+	@Test
+	public void Drag_and_Drop() throws InterruptedException {
+		WebElement findElement = driver.findElement(By.xpath("//iframe[@class='demo-frame']"));
+		driver.switchTo().frame(findElement);
+		WebElement findElement2 = driver.findElement(By.id("draggable"));
+		System.out.println(findElement2.getText());
+		WebElement findElement3 = driver.findElement(By.id("droppable"));
+		System.out.println(findElement3.getText());
+		Actions a=new Actions(driver);
+		a.dragAndDrop(findElement2, findElement3).build().perform();
+	}
+		
+		
+	@AfterClass
+	public void browser_close() {
+		// TODO Auto-generated method stub
+driver.quit();
+	}
+
+	
+
+}
